@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>CFBundleIdentifier</key>
+        <string>com.meitu.MCPStudio.SparkleTutorial</string>
+        <key>CFBundleShortVersionString</key>
+        <string>3.0.0</string>
+        <key>CFBundleVersion</key>
+        <string>3.0.0</string>
+        <key>SUFeedURL</key><!--设置 appcast.xml的网络地址-->
+        <string>http://172.21.27.191:8080/myWebServer/appcast.xml</string>
+        <key>SUPublicEDKey</key>
+        <string>tE3lrgQIN0TBJCC10vDIXZG8iNwTtK3zGPhmP2mYUUs=</string>
+    </dict>
+</plist>
