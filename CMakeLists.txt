@@ -27,20 +27,27 @@ FILE(GLOB_RECURSE SOURCE_FILES
         ${CMAKE_CURRENT_LIST_DIR}/Src/*.mm
 )
 
-add_executable(${APP_NAME} MACOSX_BUNDLE ${SOURCE_FILES})
+if (MSVC)
+    add_executable(${APP_NAME} ${SOURCE_FILES})
+else (MSVC)
+    add_executable(${APP_NAME} MACOSX_BUNDLE ${SOURCE_FILES})
+endif ()
+
 target_link_libraries(${APP_NAME}
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
         ${libSparkle_LIBS}
 )
-target_link_libraries(${APP_NAME}  "-framework Foundation")
 
-message(STATUS "libSparkle_FRAMEWORKS: ${libSparkle_FRAMEWORKS}")
-
-INSTALL( DIRECTORY
-        ${libSparkle_FRAMEWORKS}
-        DESTINATION "$<TARGET_BUNDLE_CONTENT_DIR:${APP_NAME}>/Frameworks"
-)
-INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/assets/Info.plist
-        DESTINATION "$<TARGET_BUNDLE_CONTENT_DIR:${APP_NAME}>")
+if (MSVC)
+else (MSVC)
+    target_link_libraries(${APP_NAME}  "-framework Foundation")
+    message(STATUS "libSparkle_FRAMEWORKS: ${libSparkle_FRAMEWORKS}")
+    INSTALL( DIRECTORY
+            ${libSparkle_FRAMEWORKS}
+            DESTINATION "$<TARGET_BUNDLE_CONTENT_DIR:${APP_NAME}>/Frameworks"
+    )
+    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/assets/Info.plist
+            DESTINATION "$<TARGET_BUNDLE_CONTENT_DIR:${APP_NAME}>")
+endif ()
